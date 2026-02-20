@@ -122,8 +122,8 @@
     <div class="watermark">vapidframes</div>
 
     <div class="video-wrapper" onclick="revealVideo()">
-      <video id="memoryVideo"preload="metadata"> 
-        <source src="video.mp4" type="video/mp4">
+      <video id="memoryVideo" preload="metadata" playsinline poster="thumbnail.jpg">
+  <source src="video.mp4" type="video/mp4">
       </video>
       <div class="overlay-text" id="overlay">Tap to relive ✨</div>
     </div>
@@ -141,10 +141,14 @@
     video.style.transform = "scale(1)";
     overlay.style.display = "none";
 
-    video.setAttribute("controls", "true");
-    video.play();
+    video.controls = true;
+    video.muted = false;
+
+    video.play().catch(function(error) {
+      console.log("Playback prevented:", error);
+    });
   }
-</script>
+  </script>
 
 </body>
   </html>
