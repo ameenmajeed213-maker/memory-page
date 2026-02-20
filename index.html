@@ -121,7 +121,7 @@
 
     <div class="watermark">vapidframes</div>
 
-    <div class="video-wrapper" onclick="revealVideo()">
+    <div class="video-wrapper">
       <video id="memoryVideo" preload="metadata" playsinline>
   <source src="video.mp4" type="video/mp4">
 </video>
@@ -133,22 +133,21 @@
   </div>
 
   <script>
-  function revealVideo() {
+  document.addEventListener("DOMContentLoaded", function() {
     var video = document.getElementById("memoryVideo");
     var overlay = document.getElementById("overlay");
+    var wrapper = document.querySelector(".video-wrapper");
 
-    video.style.filter = "blur(0px)";
-    video.style.transform = "scale(1)";
-    overlay.style.display = "none";
+    wrapper.addEventListener("click", function() {
+      video.style.filter = "blur(0px)";
+      video.style.transform = "scale(1)";
+      overlay.style.display = "none";
 
-    video.controls = true;
-    video.muted = false;
-
-    video.play().catch(function(error) {
-      console.log("Playback prevented:", error);
+      video.controls = true;
+      video.play();
     });
-  }
-  </script>
+  });
+</script>
 
 </body>
   </html>
