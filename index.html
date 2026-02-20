@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Relive the Moment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #e8e2d8, #cfc6bb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Georgia, serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background Sparkles */
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: sparkle 6s infinite ease-in-out;
+    }
+
+    .sparkle:nth-child(1) { left: 15%; bottom: 5%; animation-delay: 0s; }
+    .sparkle:nth-child(2) { left: 40%; bottom: 10%; animation-delay: 2s; }
+    .sparkle:nth-child(3) { left: 70%; bottom: 8%; animation-delay: 4s; }
+    .sparkle:nth-child(4) { left: 85%; bottom: 12%; animation-delay: 1s; }
+
+    @keyframes sparkle {
+      0% { transform: translateY(0); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-80px); opacity: 0; }
+    }
+
+    .polaroid {
+      background: #ffffff;
+      padding: 20px 20px 60px 20px;
+      width: 90%;
+      max-width: 360px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+      z-index: 2;
+    }
+
+    .video-wrapper {
+      position: relative;
+      cursor: pointer;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      filter: blur(10px);
+      transform: scale(1.05);
+      transition: all 0.8s ease;
+      display: block;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      margin-top: 35px;
+      font-size: 17px;
+      letter-spacing: 1px;
+      color: #444;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 13px;
+      color: #000;
+      opacity: 0.35;
+      letter-spacing: 2px;
+      font-weight: bold;
+      pointer-events: none;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Sparkles -->
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+
+  <div class="polaroid">
+
+    <div class="watermark">vapidframes</div>
+
+    <div class="video-wrapper" onclick="revealVideo()">
+      <video id="myVideo">
+        <source src="video.mp4" type="video/mp4">
+      </video>
+      <div class="overlay-text" id="overlay">Tap to relive ✨</div>
+    </div>
+
+    <p>A memory sealed in time ✨</p>
+
+  </div>
+
+  <script>
+    function revealVideo() {
+      var video = document.getElementById("myVideo");
+      var overlay = document.getElementById("overlay");
+
+      video.style.filter = "blur(0px)";
+      video.style.transform = "scale(1)";
+      overlay.style.display = "none";
+
+      video.setAttribute("controls", "true");
+      video.play();
+    }
+  </script>
+
+</body>
+  </html>
